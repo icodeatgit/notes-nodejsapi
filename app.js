@@ -18,7 +18,6 @@ const { List, Task, mongoose } = require('./db/models/index');
  * Purpose : Get all lists
  */
 app.get('/lists', (req, res) => {
-    List.
     List.find({}).then(lists => {
         res.send(lists);
     });
