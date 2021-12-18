@@ -141,6 +141,7 @@ app.get('/lists/:listId/tasks/:taskId', (req, res) => {
 });
 
 /* Port to run on */
-app.listen(3000, () => {
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
     console.log("Node is listening")
 });
