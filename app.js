@@ -18,6 +18,7 @@ const { List, Task, mongoose } = require('./db/models/index');
  * Purpose : Get all lists
  */
 app.get('/lists', (req, res) => {
+    List.
     List.find({}).then(lists => {
         res.send(lists);
     });
@@ -39,7 +40,7 @@ app.post('/lists', (req, res) => {
 
 /* 
  * PATCH /lists:id
- * Purpose : Update a specified list
+ * Purpose : Update a specified list 
  */
 app.patch('/lists/:id', (req, res) => {
     List.findOneAndUpdate({ _id: req.params.id }, {
