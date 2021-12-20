@@ -5,6 +5,15 @@ const bodyparser = require('body-parser');
 //Load Middleware
 app.use(bodyparser.json());
 
+// CORS Middleware
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
 //Load in mongoose models
 const { List, Task, mongoose } = require('./db/models/index');
 
@@ -104,13 +113,13 @@ app.post('/lists/:listId/tasks', (req, res) => {
  * Purpose : Updates a Task in the specified list 
  */
 app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
-    Task.findOneAndUpdate({ 
+    Task.findOneAndUpdate({
         _id: req.params.taskId,
         _listId: req.params.listId
     }, {
         $set: req.body
     }).then(() => {
-        res.sendStatus(200);
+        res.send({ message: "Updated Successfully"});
     });
 });
 
